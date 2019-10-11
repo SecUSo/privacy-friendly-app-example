@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.secuso.privacyfriendlyexample.R;
-import org.secuso.privacyfriendlyexample.ui.helper.PrefManager;
+import org.secuso.privacyfriendlyexample.ui.helper.FirstLaunchManager;
 
 /**
  * Class structure taken from tutorial at http://www.androidhive.info/2016/05/android-build-intro-slider-app/
@@ -108,8 +108,8 @@ public class TutorialActivity extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-        PrefManager prefManager = new PrefManager(this);
-        prefManager.setFirstTimeLaunch(false);
+        FirstLaunchManager firstLaunchManager = new FirstLaunchManager(this);
+        firstLaunchManager.setFirstTimeLaunch(false);
 
         startActivity(new Intent(TutorialActivity.this, MainActivity.class));
         finish();

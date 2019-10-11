@@ -101,7 +101,7 @@ class GameActivity : BaseActivity() {
                 id = arguments!!.getInt(ARG_SECTION_NUMBER)
             }
 
-            val rootView = inflater.inflate(R.layout.fragment_main_menu, container, false)
+            val rootView = inflater.inflate(R.layout.fragment_game_mode, container, false)
 
             val textView = rootView.findViewById<View>(R.id.section_label) as TextView
             textView.text = "Mode: $id"

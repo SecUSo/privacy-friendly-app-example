@@ -44,7 +44,6 @@ class MainActivity : BaseActivity() {
     fun onClick(view: View) {
         // do something with all these buttons?
         when (view.id) {
-
             else -> {}
         }
     }

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-import org.secuso.privacyfriendlyexample.ui.helper.PrefManager
+import org.secuso.privacyfriendlyexample.ui.helper.FirstLaunchManager
 
 /**
  * SplashScreen when the App is started.
@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val mainIntent = if (PrefManager(this).isFirstTimeLaunch) {
+        val mainIntent = if (FirstLaunchManager(this).isFirstTimeLaunch) {
             Intent(this, TutorialActivity::class.java)
         } else {
             Intent(this, MainActivity::class.java)
