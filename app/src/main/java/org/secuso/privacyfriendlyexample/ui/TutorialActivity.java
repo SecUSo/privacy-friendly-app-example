@@ -1,4 +1,4 @@
-package org.secuso.privacyfriendlyexample.tutorial;
+package org.secuso.privacyfriendlyexample.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.secuso.privacyfriendlyexample.R;
-import org.secuso.privacyfriendlyexample.ui.MainActivity;
+import org.secuso.privacyfriendlyexample.ui.helper.PrefManager;
 
 /**
  * Class structure taken from tutorial at http://www.androidhive.info/2016/05/android-build-intro-slider-app/

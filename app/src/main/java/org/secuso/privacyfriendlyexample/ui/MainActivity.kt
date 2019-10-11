@@ -8,8 +8,6 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 import org.secuso.privacyfriendlyexample.R
-import org.secuso.privacyfriendlyexample.database.model.SampleData
-import org.secuso.privacyfriendlyexample.tutorial.TutorialActivity
 import org.secuso.privacyfriendlyexample.ui.viewmodel.MainExampleViewModel
 
 /**
@@ -46,6 +44,7 @@ class MainActivity : BaseActivity() {
     fun onClick(view: View) {
         // do something with all these buttons?
         when (view.id) {
+
             else -> {}
         }
     }

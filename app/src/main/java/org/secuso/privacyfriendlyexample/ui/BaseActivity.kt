@@ -24,7 +24,13 @@ import org.secuso.privacyfriendlyexample.R
  * This class is a parent class of all activities that can be accessed from the
  * Navigation Drawer (example see MainActivity.java)
  *
- * It handles the NavigationDrawer logic and some animation for fade-in and fade-out.
+ * The default NavigationDrawer functionality is implemented in this class. If you wish to inherit
+ * the default behaviour, make sure the content view has a NavigationDrawer with the id 'nav_view',
+ * the header should point to 'nav_header_main' and the menu should be loaded from 'main_drawer'.
+ *
+ * Also the main layout that holds the content of the activity should have the id 'main_content'.
+ * This way it will automatically fade in and out every time a transition is happening.
+ *
  * @author Christopher Beckmann (Kamuno), Karola Marky (yonjuni)
  * @version 20161225
  */
@@ -113,8 +119,7 @@ abstract class BaseActivity : AppCompatActivity(), OnNavigationItemSelectedListe
 
     /**
      * This method manages the behaviour of the navigation drawer
-     * Add your menu items (ids) to res/menu/activity_main_drawer.xml
-     * @param itemId Item that has been clicked by the user
+     * Add your menu items (ids) to res/menu/main_drawer.xmlparam itemId Item that has been clicked by the user
      */
     private fun callDrawerItem(itemId: Int) {
 

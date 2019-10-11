@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-import org.secuso.privacyfriendlyexample.tutorial.PrefManager
-import org.secuso.privacyfriendlyexample.tutorial.TutorialActivity
+import org.secuso.privacyfriendlyexample.ui.helper.PrefManager
 
 /**
  * SplashScreen when the App is started.

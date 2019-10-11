@@ -25,11 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.TutorialActivity"
+        <activity android:name=".ui.TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlyexample.activities.MainActivity" />
         </activity>
         <activity
             android:name="org.secuso.privacyfriendlyexample.ui.MainActivity"
