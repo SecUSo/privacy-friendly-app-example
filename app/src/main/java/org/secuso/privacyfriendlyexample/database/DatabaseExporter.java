@@ -14,7 +14,6 @@
  You should have received a copy of the GNU General Public License
  along with Privacy Friendly App Example. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.secuso.privacyfriendlyexample.database;
 
 import android.database.Cursor;
