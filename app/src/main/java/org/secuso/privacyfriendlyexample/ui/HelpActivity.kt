@@ -1,12 +1,14 @@
 package org.secuso.privacyfriendlyexample.ui
 
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_help.*
 
-import kotlinx.android.synthetic.main.activity_help_content.*
+import org.secuso.privacyfriendlyexample.R
 
 import org.secuso.privacyfriendlyexample.ui.adapter.ExpandableListAdapter
-import org.secuso.privacyfriendlyexample.ui.helper.HelpDataDump
-import org.secuso.privacyfriendlyexample.R
+import java.util.*
+import kotlin.collections.LinkedHashMap
+
 
 /**
  * Class structure taken from tutorial at http://www.journaldev.com/9942/android-expandablelistview-example-tutorial
@@ -19,13 +21,10 @@ class HelpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_help)
 
-        val expandableListAdapter: ExpandableListAdapter
-
-        val expandableListDetail = HelpDataDump(this).dataGeneral
+        val expandableListDetail = buildData()
         val expandableListTitleGeneral = expandableListDetail.keys.toList()
 
-        expandableListAdapter = ExpandableListAdapter(this, expandableListTitleGeneral, expandableListDetail)
-        generalExpandableListView.setAdapter(expandableListAdapter)
+        generalExpandableListView.setAdapter(ExpandableListAdapter(this, expandableListTitleGeneral, expandableListDetail))
 
         overridePendingTransition(0, 0)
     }
@@ -34,4 +33,15 @@ class HelpActivity : BaseActivity() {
      * ID of the menu item it belongs to
      */
     override val navigationDrawerID: Int = R.id.nav_help
+
+    private fun buildData(): LinkedHashMap<String, List<String>> {
+        val expandableListDetail = LinkedHashMap<String, List<String>>()
+
+        expandableListDetail[getString(R.string.help_whatis)] = Collections.singletonList(getString(R.string.help_whatis_answer))
+        expandableListDetail[getString(R.string.help_feature_one)] = Collections.singletonList(getString(R.string.help_feature_one_answer))
+        expandableListDetail[getString(R.string.help_privacy)] = Collections.singletonList(getString(R.string.help_privacy_answer))
+        expandableListDetail[getString(R.string.help_permission)] = Collections.singletonList(getString(R.string.help_permission_answer))
+
+        return expandableListDetail
+    }
 }
