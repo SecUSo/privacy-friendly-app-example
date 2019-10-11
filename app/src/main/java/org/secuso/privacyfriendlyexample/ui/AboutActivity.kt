@@ -45,7 +45,7 @@ class AboutActivity : AppCompatActivity() {
 
         secusoWebsite.movementMethod = LinkMovementMethod.getInstance()
         githubURL.movementMethod = LinkMovementMethod.getInstance()
-        textFieldVersionName.text = BuildConfig.VERSION_NAME
+        textFieldVersion.text = getString(R.string.version_number, BuildConfig.VERSION_NAME)
     }
 }
 

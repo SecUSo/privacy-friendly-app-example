@@ -143,8 +143,9 @@ abstract class BaseActivity : AppCompatActivity(), OnNavigationItemSelectedListe
 
         when (itemId) {
             R.id.nav_example -> {
-                intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                intent = Intent(this, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
                 startActivity(intent)
             }
             R.id.nav_game -> {
@@ -158,6 +159,12 @@ abstract class BaseActivity : AppCompatActivity(), OnNavigationItemSelectedListe
             R.id.nav_help -> {
                 intent = Intent(this, HelpActivity::class.java)
                 createBackStack(intent)
+            }
+            R.id.nav_tutorial -> {
+                intent = Intent(this, TutorialActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
+                startActivity(intent)
             }
             R.id.nav_settings -> {
                 intent = Intent(this, SettingsActivity::class.java)

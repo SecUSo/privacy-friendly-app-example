@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -10,8 +11,8 @@ android {
         applicationId "org.secuso.example"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 6
-        versionName "3.0"
+        versionCode 7
+        versionName "4.0"
     }
     buildTypes {
         release {
@@ -37,7 +38,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'androidx.room:room-runtime:2.1.0'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0'
+    kapt 'androidx.room:room-compiler:2.1.0'
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"

@@ -37,10 +37,6 @@ import org.secuso.privacyfriendlyexample.R
  */
 class GameActivity : BaseActivity() {
 
-    private var mViewPager: ViewPager? = null
-    private var mArrowLeft: ImageView? = null
-    private var mArrowRight: ImageView? = null
-
     /**
      * ID of the menu item it belongs to
      */
@@ -56,23 +52,21 @@ class GameActivity : BaseActivity() {
 
         val index = mSharedPreferences.getInt("lastChosenPage", 0)
 
-        mViewPager!!.currentItem = index
-        mArrowLeft = findViewById<View>(R.id.arrow_left) as ImageView
-        mArrowRight = findViewById<View>(R.id.arrow_right) as ImageView
+        chooseGameTypeViewPager.currentItem = index
 
         //care for initial postiton of the ViewPager
-        mArrowLeft!!.visibility = if (index == 0) View.INVISIBLE else View.VISIBLE
-        mArrowRight!!.visibility = if (index == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
+        arrow_left.visibility = if (index == 0) View.INVISIBLE else View.VISIBLE
+        arrow_right.visibility = if (index == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
 
         //Update ViewPager on change
-        mViewPager!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        chooseGameTypeViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }
 
             override fun onPageSelected(position: Int) {
-                mArrowLeft!!.visibility = if (position == 0) View.INVISIBLE else View.VISIBLE
-                mArrowRight!!.visibility = if (position == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
+                arrow_left.visibility = if (position == 0) View.INVISIBLE else View.VISIBLE
+                arrow_right.visibility = if (position == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
 
                 //save position in settings
                 val editor = mSharedPreferences.edit()
@@ -87,8 +81,8 @@ class GameActivity : BaseActivity() {
 
     fun onClick(view: View) {
         when (view.id) {
-            R.id.arrow_left -> mViewPager!!.arrowScroll(View.FOCUS_LEFT)
-            R.id.arrow_right -> mViewPager!!.arrowScroll(View.FOCUS_RIGHT)
+            R.id.arrow_left -> chooseGameTypeViewPager.arrowScroll(View.FOCUS_LEFT)
+            R.id.arrow_right -> chooseGameTypeViewPager.arrowScroll(View.FOCUS_RIGHT)
         }
     }
 

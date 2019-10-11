@@ -47,13 +47,6 @@ class MainActivity : BaseActivity() {
             // TODO do something with the data here - e.g. update an adapter, trigger some event, etc.
         })
 
-        button_welcomedialog.setOnClickListener {
-            val intent = Intent(this@MainActivity, TutorialActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            }
-            startActivity(intent)
-        }
-
         overridePendingTransition(0, 0)
     }
 
