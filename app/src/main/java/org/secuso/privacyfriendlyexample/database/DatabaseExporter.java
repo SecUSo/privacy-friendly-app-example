@@ -28,17 +28,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * @author Karola Marky
+ * This class turns a database into a JSON string
+ * <p>
+ * Structure based on http://tech.sarathdr.com/android-app/convert-database-cursor-result-to-json-array-android-app-development/
+ * accessed at 25th December 2016
+ *
+ * @author Karola Marky (yonjuni)
  * @version 20161225
- *          Structure based on http://tech.sarathdr.com/android-app/convert-database-cursor-result-to-json-array-android-app-development/
- *          accessed at 25th December 2016
- *          <p>
- *          This class turns a database into a JSON string
  */
-
 public class DatabaseExporter {
 
-    private final String DEBUG_TAG = "DATABASE_EXPORTER";
+    private final String TAG = DatabaseExporter.class.getSimpleName();
 
     private String DB_PATH;
     private String DB_NAME;
@@ -52,10 +52,8 @@ public class DatabaseExporter {
      * Turns a single DB table into a JSON string
      * @return JSON string of the table
      */
-    public JSONArray tableToJSON(String TABLE_NAME) {
-
+    private JSONArray tableToJSON(String TABLE_NAME) {
         SQLiteDatabase dataBase = SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READONLY);
-
 
         String searchQuery = "SELECT  * FROM " + TABLE_NAME;
         Cursor cursor = dataBase.rawQuery(searchQuery, null);
@@ -74,13 +72,13 @@ public class DatabaseExporter {
                     try {
 
                         if (cursor.getString(i) != null) {
-                            //Log.d(DEBUG_TAG, cursor.getString(i));
+                            //Log.d(TAG, cursor.getString(i));
                             rowObject.put(cursor.getColumnName(i), cursor.getString(i));
                         } else {
                             rowObject.put(cursor.getColumnName(i), "");
                         }
                     } catch (Exception e) {
-                        Log.d(DEBUG_TAG, e.getMessage());
+                        Log.d(TAG, e.getMessage());
                     }
                 }
 
@@ -99,7 +97,7 @@ public class DatabaseExporter {
             e.printStackTrace();
         }
 
-        //Log.d(DEBUG_TAG, finalJSON.toString());
+        //Log.d(TAG, finalJSON.toString());
         return resultSet;
 
     }
@@ -108,8 +106,7 @@ public class DatabaseExporter {
      * @return a list of all table names, including android_metadata and sqlite_sequence (table that
      * contains current maximal ID of all tables)
      */
-    public ArrayList<String> getTableNames() {
-
+    private ArrayList<String> getTableNames() {
         SQLiteDatabase dataBase = SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READONLY);
         ArrayList<String> arrTblNames = new ArrayList<String>();
         Cursor c = dataBase.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
@@ -124,7 +121,6 @@ public class DatabaseExporter {
     }
 
     /**
-     *
      * @return Entire DB as JSONObject
      * @throws JSONException
      */
@@ -139,10 +135,8 @@ public class DatabaseExporter {
         JSONObject finalDBJSON = new JSONObject();
         finalDBJSON.put(DB_NAME, listList);
 
-        Log.d(DEBUG_TAG, finalDBJSON.toString());
+        Log.d(TAG, finalDBJSON.toString());
 
         return finalDBJSON;
     }
-
-
 }

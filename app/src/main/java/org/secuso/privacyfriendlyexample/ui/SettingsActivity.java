@@ -1,4 +1,4 @@
-package org.secuso.privacyfriendlyexample.activities;
+package org.secuso.privacyfriendlyexample.ui;
 
 
 import android.annotation.TargetApi;
