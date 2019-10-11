@@ -1,6 +1,6 @@
 ﻿# Privacy Friendly App Example
 
-This application contains the basic design of a Privacy Friendly App without any other functionality. It includes a Navigation Drawer, examples for buttons, a help page and the about page. It further shows an example of the main menu for a Privacy Friendly Game App. This app belongs to the group of Privacy Friendly Apps developed by the Technische Universität Darmstadt. 
+This application contains the basic design of a Privacy Friendly App without any other functionality. It includes a Navigation Drawer, examples for buttons, a help page and the about page. It further shows an example of the main menu for a Privacy Friendly Game App. This app belongs to the group of [Privacy Friendly Apps](https://secuso.org/pfa) developed by the [SECUSO](https://secuso.org/) Group at [Karlsruher Institute for Technology (KIT)](https://www.kit.edu).
 
 ## Motivation
 
@@ -8,17 +8,17 @@ This application has been developed to be used as a basis for a Privacy Friendly
 
 ## Download and more Information
 
-Further development requires Android Studio, we recommend to use at least version 3.1.1
+Further development requires Android Studio, we recommend to use the latest version.
  
 ### API Reference
 
 Mininum SDK: 21
-Target SDK: 27 
+Target SDK: 28 
 
 ## License
 
 Privacy Friendly App Example is licensed under the GPLv3.
-Copyright (C) 2016-2018  Karola Marky
+Copyright (C) 2019 Karlsruher Institute for Technology (KIT)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +33,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-The icons used in the nagivation drawer are licensed under the [CC BY 2.5](http://creativecommons.org/licenses/by/2.5/). In addition to them the app uses icons from [Google Design Material Icons](https://design.google.com/icons/index.html) licensed under Apache License Version 2.0. All other images (the logo of Privacy Friendly Apps, the SECUSO logo and the app logo) copyright [Technische Universtität Darmstadt](www.tu-darmstadt.de) (2016-2018).
+The Privacy Friendly Apps logo, the SECUSO logo, and the app logo are copyright [Karlsruher Institute for Technology (KIT)](https://www.kit.edu) (2019). Every other icon is from the [Google Design Material Icons](https://design.google.com/icons/index.html) licensed under Apache License Version 2.0 and some icons that are licensed under [CC BY 2.5](http://creativecommons.org/licenses/by/2.5/).
+
 
 ## Contributors
 
@@ -43,7 +44,3 @@ Markus Hau<br />
 Github-Users: <br />
 Yonjuni (Karola Marky)<br />
 Kamuno (Christopher Beckmann)
-
-
-
-
