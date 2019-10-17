@@ -13,12 +13,12 @@ Further development requires Android Studio, we recommend to use the latest vers
 ### API Reference
 
 Mininum SDK: 21
-Target SDK: 28 
+Target SDK: 29 
 
 ## License
 
 Privacy Friendly App Example is licensed under the GPLv3.
-Copyright (C) 2019 Karlsruher Institute for Technology (KIT)
+Copyright (C) 2019 Karola Marky, Christopher Beckmann
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-The Privacy Friendly Apps logo, the SECUSO logo, and the app logo are copyright [Karlsruher Institute for Technology (KIT)](https://www.kit.edu) (2019). Every other icon is from the [Google Design Material Icons](https://material.io/resources/icons/?style=baseline) licensed under Apache License Version 2.0 and some icons that are licensed under [CC BY 2.5](http://creativecommons.org/licenses/by/2.5/).
+The Privacy Friendly Apps logo, the SECUSO logo, and the app logo are copyright [Karlsruher Institute for Technology (KIT)](https://www.kit.edu) (2019). Every other icon is from the [Google Design Material Icons](https://material.io/resources/icons/?style=baseline) licensed under Apache License Version 2.0.
 
 
 ## Contributors
