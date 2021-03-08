@@ -25,7 +25,6 @@ import androidx.lifecycle.MediatorLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import org.secuso.privacyfriendlyexample.database.AppDatabase
 import org.secuso.privacyfriendlyexample.database.model.SampleData
 
@@ -34,7 +33,7 @@ import org.secuso.privacyfriendlyexample.database.model.SampleData
  * @see MainActivity
  * @author Christopher Beckmann (Kamuno)
  */
-class MainExampleViewModel(app : Application) : AndroidViewModel(app) {
+class MainExampleViewModel(app: Application) : AndroidViewModel(app) {
     private val TAG = MainExampleViewModel::class.java.simpleName
 
     // Coroutine Helpers
@@ -47,7 +46,7 @@ class MainExampleViewModel(app : Application) : AndroidViewModel(app) {
 
     // LiveData for View
     private val _sampleData = MediatorLiveData<List<SampleData>>()
-    val sampleData : LiveData<List<SampleData>> get() = _sampleData
+    val sampleData: LiveData<List<SampleData>> get() = _sampleData
 
     // Load initial required data. This does not have to be done here.
     init {
@@ -55,10 +54,8 @@ class MainExampleViewModel(app : Application) : AndroidViewModel(app) {
     }
 
     private fun loadSampleData() {
-        uiScope.launch(Dispatchers.IO) {
-            _sampleData.addSource(database.sampleDataDao().allLive) {
-                _sampleData.value = it
-            }
+        _sampleData.addSource(database.sampleDataDao().allLive) {
+            _sampleData.value = it
         }
     }
 
