@@ -36,8 +36,7 @@
         <activity
             android:name="org.secuso.privacyfriendlyexample.ui.AboutActivity"
             android:label="@string/about"
-            android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity"
-            android:screenOrientation="portrait">
+            android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlyexample.ui.MainActivity" />
@@ -64,7 +63,6 @@
             android:name="org.secuso.privacyfriendlyexample.ui.GameActivity"
             android:label="@string/title_activity_game"
             android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
