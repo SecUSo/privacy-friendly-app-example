@@ -49,6 +49,6 @@ The Privacy Friendly Apps logo, the SECUSO logo, and the app logo are copyright 
 App-Icon: <br />
 Markus Hau<br />
 
-Github-Users: <br />
-Yonjuni (Karola Marky)<br />
-Kamuno (Christopher Beckmann)
+<a href="https://github.com/SecUSo/privacy-friendly-app-example/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=SecUSo/privacy-friendly-app-example&max=100&columns=20" />
+</a>
