@@ -17,9 +17,9 @@
 package org.secuso.privacyfriendlyexample.ui
 
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_help.*
 
 import org.secuso.privacyfriendlyexample.R
+import org.secuso.privacyfriendlyexample.databinding.ActivityHelpBinding
 
 import org.secuso.privacyfriendlyexample.ui.adapter.ExpandableListAdapter
 import java.util.*
@@ -35,12 +35,13 @@ class HelpActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_help)
+        val binding = ActivityHelpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val expandableListDetail = buildData()
         val expandableListTitleGeneral = expandableListDetail.keys.toList()
 
-        generalExpandableListView.setAdapter(ExpandableListAdapter(this, expandableListTitleGeneral, expandableListDetail))
+        binding.generalExpandableListView.setAdapter(ExpandableListAdapter(this, expandableListTitleGeneral, expandableListDetail))
 
         overridePendingTransition(0, 0)
     }

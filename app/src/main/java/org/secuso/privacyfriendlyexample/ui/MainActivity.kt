@@ -16,12 +16,10 @@
  */
 package org.secuso.privacyfriendlyexample.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 import org.secuso.privacyfriendlyexample.R
 import org.secuso.privacyfriendlyexample.ui.viewmodel.MainExampleViewModel

@@ -24,11 +24,10 @@ import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_game.*
 
 import org.secuso.privacyfriendlyexample.R
+import org.secuso.privacyfriendlyexample.databinding.ActivityGameBinding
 
 /**
  * This activity is an example for the main menu of gaming applications
@@ -41,32 +40,34 @@ class GameActivity : BaseActivity() {
      * ID of the menu item it belongs to
      */
     override val navigationDrawerID: Int = R.id.nav_game
+    private lateinit var binding: ActivityGameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        binding = ActivityGameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         // Set up the ViewPager with the sections adapter.
-        chooseGameTypeViewPager?.adapter = mSectionsPagerAdapter
+        binding.chooseGameTypeViewPager.adapter = mSectionsPagerAdapter
 
         val index = mSharedPreferences.getInt("lastChosenPage", 0)
 
-        chooseGameTypeViewPager.currentItem = index
+        binding.chooseGameTypeViewPager.currentItem = index
 
         //care for initial postiton of the ViewPager
-        arrow_left.visibility = if (index == 0) View.INVISIBLE else View.VISIBLE
-        arrow_right.visibility = if (index == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
+        binding.arrowLeft.visibility = if (index == 0) View.INVISIBLE else View.VISIBLE
+        binding.arrowRight.visibility = if (index == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
 
         //Update ViewPager on change
-        chooseGameTypeViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.chooseGameTypeViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }
 
             override fun onPageSelected(position: Int) {
-                arrow_left.visibility = if (position == 0) View.INVISIBLE else View.VISIBLE
-                arrow_right.visibility = if (position == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
+                binding.arrowLeft.visibility = if (position == 0) View.INVISIBLE else View.VISIBLE
+                binding.arrowRight.visibility = if (position == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
 
                 //save position in settings
                 val editor = mSharedPreferences.edit()
@@ -81,8 +82,8 @@ class GameActivity : BaseActivity() {
 
     fun onClick(view: View) {
         when (view.id) {
-            R.id.arrow_left -> chooseGameTypeViewPager.arrowScroll(View.FOCUS_LEFT)
-            R.id.arrow_right -> chooseGameTypeViewPager.arrowScroll(View.FOCUS_RIGHT)
+            R.id.arrow_left -> binding.chooseGameTypeViewPager.arrowScroll(View.FOCUS_LEFT)
+            R.id.arrow_right -> binding.chooseGameTypeViewPager.arrowScroll(View.FOCUS_RIGHT)
         }
     }
 
