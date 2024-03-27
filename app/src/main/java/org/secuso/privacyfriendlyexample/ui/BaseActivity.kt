@@ -33,6 +33,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
+import org.secuso.pfacore.ui.activities.AboutActivity
+import org.secuso.pfacore.ui.activities.HelpActivity
+import org.secuso.pfacore.ui.activities.SettingsActivity
 
 import org.secuso.privacyfriendlyexample.R
 
@@ -168,8 +171,6 @@ abstract class BaseActivity : AppCompatActivity(), OnNavigationItemSelectedListe
             }
             R.id.nav_settings -> {
                 intent = Intent(this, SettingsActivity::class.java)
-                intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsActivity.GeneralPreferenceFragment::class.java.name)
-                intent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS, true)
                 createBackStack(intent)
             }
         }
