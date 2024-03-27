@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <supports-screens
         android:anyDensity="true"
@@ -10,6 +11,7 @@
         android:xlargeScreens="true"/>
 
     <application
+        android:name=".PFExample"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -34,7 +36,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name="org.secuso.privacyfriendlyexample.ui.AboutActivity"
+            android:name="org.secuso.pfacore.ui.activities.AboutActivity"
             android:label="@string/about"
             android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity">
             <meta-data
@@ -42,7 +44,7 @@
                 android:value="org.secuso.privacyfriendlyexample.ui.MainActivity" />
         </activity>
         <activity
-            android:name="org.secuso.privacyfriendlyexample.ui.HelpActivity"
+            android:name="org.secuso.pfacore.ui.activities.HelpActivity"
             android:label="@string/help"
             android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -51,7 +53,7 @@
                 android:value="org.secuso.privacyfriendlyexample.ui.MainActivity" />
         </activity>
         <activity
-            android:name="org.secuso.privacyfriendlyexample.ui.SettingsActivity"
+            android:name="org.secuso.pfacore.ui.activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -68,6 +70,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlyexample.ui.MainActivity" />
         </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove">
+        </provider>
+
+        <service
+            android:name="org.secuso.pfacore.backup.PFABackupService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":backup"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="org.secuso.privacyfriendlybackup.api.pfa.PFAAuthService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
