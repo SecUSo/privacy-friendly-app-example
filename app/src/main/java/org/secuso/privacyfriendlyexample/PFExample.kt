@@ -1,30 +1,31 @@
 package org.secuso.privacyfriendlyexample
 
-import org.secuso.pfacore.model.PFApplication
-import org.secuso.pfacore.model.PFDatabase
-import org.secuso.pfacore.ui.AboutData
-import org.secuso.pfacore.ui.help.HelpData
-import org.secuso.pfacore.ui.settings.ISettings
+import androidx.lifecycle.LiveData
+import org.secuso.pfacore.application.PFApplication
+import org.secuso.pfacore.application.PFDatabase
+import org.secuso.pfacore.model.about.About
+import org.secuso.pfacore.model.settings.ISettings
+import org.secuso.pfacore.ui.compose.help.Help
 import org.secuso.privacyfriendlyexample.database.AppDatabase
 
 class PFExample: PFApplication() {
-    override val ApplicationName: String
+    override val applicationName: String
         get() = getString(R.string.app_name)
-    override val LightMode: Boolean
+    override val lightMode: LiveData<Boolean>
         get() = PFSettings(applicationContext).lightMode
-    override val Database: PFDatabase
+    override val database: PFDatabase
         get() = AppDatabase.getInstance(applicationContext)
 
-    override val About: AboutData
-        get() = AboutData(
+    override val about: About
+        get() = About(
             name = getString(R.string.app_name),
             version = BuildConfig.VERSION_NAME,
             authors = getString(R.string.about_author_names),
             repo = getString(org.secuso.pfacore.R.string.about_github)
         )
 
-    override val Help
-        get() = HelpData.build(applicationContext) {
+    override val help
+        get() = Help.build(applicationContext) {
             item {
                 title { resource(R.string.help_whatis) }
                 description { resource(R.string.help_whatis_answer) }
@@ -42,6 +43,6 @@ class PFExample: PFApplication() {
                 description { resource(R.string.help_permission_answer) }
             }
         }
-    override val Settings: ISettings
+    override val settings: ISettings<*>
         get() = PFSettings(applicationContext).settings
 }

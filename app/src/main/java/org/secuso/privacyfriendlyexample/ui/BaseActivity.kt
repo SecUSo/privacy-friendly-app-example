@@ -33,9 +33,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
-import org.secuso.pfacore.ui.activities.AboutActivity
-import org.secuso.pfacore.ui.activities.HelpActivity
-import org.secuso.pfacore.ui.activities.SettingsActivity
+import org.secuso.pfacore.ui.compose.activities.AboutActivity
+import org.secuso.pfacore.ui.compose.activities.HelpActivity
+//import org.secuso.pfacore.ui.compose.activities.HelpActivity
+import org.secuso.pfacore.ui.compose.activities.SettingsActivity
 
 import org.secuso.privacyfriendlyexample.R
 

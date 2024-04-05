@@ -36,7 +36,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name="org.secuso.pfacore.ui.activities.AboutActivity"
+            android:name="org.secuso.pfacore.ui.compose.activities.AboutActivity"
             android:label="@string/about"
             android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity">
             <meta-data
@@ -44,7 +44,7 @@
                 android:value="org.secuso.privacyfriendlyexample.ui.MainActivity" />
         </activity>
         <activity
-            android:name="org.secuso.pfacore.ui.activities.HelpActivity"
+            android:name="org.secuso.pfacore.ui.compose.activities.HelpActivity"
             android:label="@string/help"
             android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -53,7 +53,7 @@
                 android:value="org.secuso.privacyfriendlyexample.ui.MainActivity" />
         </activity>
         <activity
-            android:name="org.secuso.pfacore.ui.activities.SettingsActivity"
+            android:name="org.secuso.pfacore.ui.compose.activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName="org.secuso.privacyfriendlyexample.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -19,8 +19,7 @@ package org.secuso.privacyfriendlyexample.database
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import org.secuso.pfacore.model.PFDatabase
+import org.secuso.pfacore.application.PFDatabase
 import org.secuso.privacyfriendlyexample.database.dao.SampleDataDao
 import org.secuso.privacyfriendlyexample.database.model.SampleData
 
