@@ -17,11 +17,14 @@
 package org.secuso.privacyfriendlyexample.ui
 
 import android.os.Bundle
-import android.view.View
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-
+import androidx.lifecycle.ViewModelProvider
+import org.secuso.pfacore.application.PFApplication
+import org.secuso.pfacore.model.DrawerElement
 import org.secuso.privacyfriendlyexample.R
+import org.secuso.privacyfriendlyexample.databinding.ActivityMainBinding
 import org.secuso.privacyfriendlyexample.ui.viewmodel.MainExampleViewModel
 
 /**
@@ -36,11 +39,17 @@ class MainActivity : BaseActivity() {
 
     private lateinit var exampleViewModel: MainExampleViewModel
 
+    @Composable
+    override fun Content(application: PFApplication) {
+        AndroidViewBinding(ActivityMainBinding::inflate) {
+            // Access all UI-Elements here
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        exampleViewModel = ViewModelProviders.of(this).get(MainExampleViewModel::class.java)
+        exampleViewModel = ViewModelProvider(this)[MainExampleViewModel::class.java]
         exampleViewModel.sampleData.observe(this, Observer { data ->
             // TODO do something with the data here - e.g. update an adapter, trigger some event, etc.
         })
@@ -48,10 +57,7 @@ class MainActivity : BaseActivity() {
         overridePendingTransition(0, 0)
     }
 
-    fun onClick(view: View) {
-        // do something with all these buttons?
-        when (view.id) {
-            else -> {}
-        }
+    override fun isActiveDrawerElement(element: DrawerElement): Boolean {
+        return element.name == getString(R.string.action_main)
     }
 }

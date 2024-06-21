@@ -17,7 +17,7 @@
         android:checkableBehavior="all">
         <item
             android:id="@+id/nav_tutorial"
-            android:icon="@drawable/ic_menu_tutorial"
+            android:icon="@drawable/ic_tutorial"
             android:title="@string/action_tutorial" />
         <item
             android:id="@+id/nav_settings"

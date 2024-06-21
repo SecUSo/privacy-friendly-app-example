@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
-            android:name=".ui.SplashActivity"
+            android:name="org.secuso.pfacore.ui.compose.activities.SplashActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
@@ -27,7 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.TutorialActivity"
+        <activity
+            android:name="org.secuso.pfacore.ui.compose.activities.TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity

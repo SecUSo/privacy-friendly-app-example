@@ -19,7 +19,7 @@ package org.secuso.privacyfriendlyexample.database
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
-import org.secuso.pfacore.application.PFDatabase
+import androidx.room.RoomDatabase
 import org.secuso.privacyfriendlyexample.database.dao.SampleDataDao
 import org.secuso.privacyfriendlyexample.database.model.SampleData
 
@@ -28,8 +28,7 @@ import org.secuso.privacyfriendlyexample.database.model.SampleData
  * @author Christopher Beckmann (Kamuno)
  */
 @Database(entities = arrayOf(SampleData::class), version = 1, exportSchema = false)
-abstract class AppDatabase : PFDatabase() {
-    override val name: String = DB_NAME
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun sampleDataDao(): SampleDataDao
 

@@ -16,28 +16,21 @@
  */
 package org.secuso.privacyfriendlyexample.ui
 
+//import org.secuso.pfacore.ui.compose.activities.HelpActivity
+
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.preference.PreferenceActivity
 import android.preference.PreferenceManager
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
+import android.view.View
 import androidx.core.app.TaskStackBuilder
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import android.view.MenuItem
-import android.view.View
-import org.secuso.pfacore.ui.compose.activities.AboutActivity
-import org.secuso.pfacore.ui.compose.activities.HelpActivity
-//import org.secuso.pfacore.ui.compose.activities.HelpActivity
-import org.secuso.pfacore.ui.compose.activities.SettingsActivity
-
+import com.google.android.material.navigation.NavigationView
+import org.secuso.pfacore.model.DrawerMenu
+import org.secuso.pfacore.ui.compose.activities.DrawerActivity
 import org.secuso.privacyfriendlyexample.R
 
 /**
@@ -54,7 +47,7 @@ import org.secuso.privacyfriendlyexample.R
  * @author Christopher Beckmann (Kamuno), Karola Marky (yonjuni)
  * @version 20161225
  */
-abstract class BaseActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
+abstract class BaseActivity : DrawerActivity() {
     companion object {
         // delay to launch nav drawer item, to allow close animation to play
         internal const val NAVDRAWER_LAUNCH_DELAY = 250
@@ -80,44 +73,31 @@ abstract class BaseActivity : AppCompatActivity(), OnNavigationItemSelectedListe
         overridePendingTransition(0, 0)
     }
 
+    override fun drawer(): DrawerMenu = DrawerMenu.build {
+        name = getString(R.string.app_name)
+        icon = R.mipmap.ic_launcher
+        section {
+            activity {
+                name = getString(R.string.action_main)
+                icon = R.drawable.ic_menu_home
+                clazz = MainActivity::class.java
+                extras = { it.apply { flags = Intent.FLAG_ACTIVITY_CLEAR_TOP } }
+            }
+            activity {
+                name = getString(R.string.action_game)
+                icon = R.drawable.ic_menu_game
+                clazz = GameActivity::class.java
+            }
+        }
+        defaultDrawerSection(this)
+    }
+
     override fun onBackPressed() {
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
-        }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean = goToNavigationItem(item.itemId)
-
-    protected fun goToNavigationItem(itemId: Int): Boolean {
-        if (itemId == navigationDrawerID) {
-            // just close drawer because we are already in this activity
-            mDrawerLayout?.closeDrawer(GravityCompat.START)
-            return true
-        }
-
-        // delay transition so the drawer can close
-        mHandler.postDelayed({ callDrawerItem(itemId) }, NAVDRAWER_LAUNCH_DELAY.toLong())
-
-        mDrawerLayout?.closeDrawer(GravityCompat.START)
-
-        selectNavigationItem(itemId)
-
-        // fade out the active activity
-        val mainContent = findViewById<View>(R.id.main_content)
-        mainContent?.animate()!!.alpha(0f).duration = MAIN_CONTENT_FADEOUT_DURATION.toLong()
-        return true
-    }
-
-    // set active navigation item
-    private fun selectNavigationItem(itemId: Int) {
-        mNavigationView ?: return
-
-        for (i in 0 until mNavigationView!!.menu.size()) {
-            val b = itemId == mNavigationView!!.menu.getItem(i).itemId
-            mNavigationView!!.menu.getItem(i).isChecked = b
         }
     }
 
@@ -137,64 +117,8 @@ abstract class BaseActivity : AppCompatActivity(), OnNavigationItemSelectedListe
         }
     }
 
-    /**
-     * This method manages the behaviour of the navigation drawer
-     * Add your menu items (ids) to res/menu/main_drawer.xmlparam itemId Item that has been clicked by the user
-     */
-    private fun callDrawerItem(itemId: Int) {
-
-        val intent: Intent
-
-        when (itemId) {
-            R.id.nav_example -> {
-                intent = Intent(this, MainActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                }
-                startActivity(intent)
-            }
-            R.id.nav_game -> {
-                intent = Intent(this, GameActivity::class.java)
-                createBackStack(intent)
-            }
-            R.id.nav_about -> {
-                intent = Intent(this, AboutActivity::class.java)
-                createBackStack(intent)
-            }
-            R.id.nav_help -> {
-                intent = Intent(this, HelpActivity::class.java)
-                createBackStack(intent)
-            }
-            R.id.nav_tutorial -> {
-                intent = Intent(this, TutorialActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                }
-                startActivity(intent)
-            }
-            R.id.nav_settings -> {
-                intent = Intent(this, SettingsActivity::class.java)
-                createBackStack(intent)
-            }
-        }
-    }
-
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        if (supportActionBar == null) {
-            setSupportActionBar(toolbar)
-        }
-
-        mDrawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        val toggle = ActionBarDrawerToggle(
-                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        mDrawerLayout!!.addDrawerListener(toggle)
-        toggle.syncState()
-
-        mNavigationView = findViewById<View>(R.id.nav_view) as NavigationView
-        mNavigationView!!.setNavigationItemSelectedListener(this)
-
-        selectNavigationItem(navigationDrawerID)
 
         val mainContent = findViewById<View>(R.id.main_content)
         if (mainContent != null) {

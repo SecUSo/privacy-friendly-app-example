@@ -16,8 +16,6 @@
         android:fitsSystemWindows="true"
         tools:context="org.secuso.privacyfriendlyexample.ui.GameActivity">
 
-        <include layout="@layout/toolbar"/>
-
         <LinearLayout
             android:id="@+id/main_content"
             xmlns:android="http://schemas.android.com/apk/res/android"

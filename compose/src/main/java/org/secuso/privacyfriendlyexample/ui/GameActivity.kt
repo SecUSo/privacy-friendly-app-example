@@ -17,15 +17,20 @@
 package org.secuso.privacyfriendlyexample.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.viewinterop.AndroidViewBinding
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import org.secuso.pfacore.application.PFApplication
+import org.secuso.pfacore.model.DrawerElement
 import org.secuso.privacyfriendlyexample.R
 import org.secuso.privacyfriendlyexample.databinding.ActivityGameBinding
 
@@ -40,51 +45,47 @@ class GameActivity : BaseActivity() {
      * ID of the menu item it belongs to
      */
     override val navigationDrawerID: Int = R.id.nav_game
-    private lateinit var binding: ActivityGameBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityGameBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    @Composable
+    override fun Content(application: PFApplication) {
+        val context = LocalContext.current as FragmentActivity
+        AndroidViewBinding(ActivityGameBinding::inflate) {
+            val adapter = SectionsPagerAdapter(context.supportFragmentManager)
+            chooseGameTypeViewPager.adapter = adapter
+            val index = mSharedPreferences.getInt("lastChosenPage", 0)
 
-        val mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
-        // Set up the ViewPager with the sections adapter.
-        binding.chooseGameTypeViewPager.adapter = mSectionsPagerAdapter
+            chooseGameTypeViewPager.currentItem = index
 
-        val index = mSharedPreferences.getInt("lastChosenPage", 0)
+            //care for initial postiton of the ViewPager
+            arrowLeft.visibility = if (index == 0) View.INVISIBLE else View.VISIBLE
+            arrowRight.visibility = if (index == adapter.count - 1) View.INVISIBLE else View.VISIBLE
 
-        binding.chooseGameTypeViewPager.currentItem = index
+            arrowLeft.setOnClickListener { chooseGameTypeViewPager.arrowScroll(View.FOCUS_LEFT) }
+            arrowRight.setOnClickListener { chooseGameTypeViewPager.arrowScroll(View.FOCUS_RIGHT) }
 
-        //care for initial postiton of the ViewPager
-        binding.arrowLeft.visibility = if (index == 0) View.INVISIBLE else View.VISIBLE
-        binding.arrowRight.visibility = if (index == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
+            //Update ViewPager on change
+            chooseGameTypeViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
-        //Update ViewPager on change
-        binding.chooseGameTypeViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                }
 
-            }
+                override fun onPageSelected(position: Int) {
+                    arrowLeft.visibility = if (position == 0) View.INVISIBLE else View.VISIBLE
+                    arrowRight.visibility = if (position == adapter.count - 1) View.INVISIBLE else View.VISIBLE
 
-            override fun onPageSelected(position: Int) {
-                binding.arrowLeft.visibility = if (position == 0) View.INVISIBLE else View.VISIBLE
-                binding.arrowRight.visibility = if (position == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
+                    //save position in settings
+                    val editor = mSharedPreferences.edit()
+                    editor.putInt("lastChosenPage", position)
+                    editor.apply()
+                }
 
-                //save position in settings
-                val editor = mSharedPreferences.edit()
-                editor.putInt("lastChosenPage", position)
-                editor.apply()
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {}
-        })
-
+                override fun onPageScrollStateChanged(state: Int) {}
+            })
+        }
     }
 
-    fun onClick(view: View) {
-        when (view.id) {
-            R.id.arrow_left -> binding.chooseGameTypeViewPager.arrowScroll(View.FOCUS_LEFT)
-            R.id.arrow_right -> binding.chooseGameTypeViewPager.arrowScroll(View.FOCUS_RIGHT)
-        }
+    override fun isActiveDrawerElement(element: DrawerElement): Boolean {
+        return element.name == getString(R.string.action_game)
     }
 
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
