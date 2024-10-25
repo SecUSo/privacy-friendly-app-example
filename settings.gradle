@@ -1,1 +1,3 @@
-include ':app'
+include(':compose')
+include(':view')
+includeBuild("libs/pfa-core")
