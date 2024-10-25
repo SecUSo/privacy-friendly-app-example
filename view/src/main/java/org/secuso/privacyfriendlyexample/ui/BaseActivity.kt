@@ -21,9 +21,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
-import com.google.android.material.navigation.NavigationView
 import org.secuso.pfacore.model.DrawerMenu
-import org.secuso.pfacore.ui.view.activities.DrawerActivity
+import org.secuso.pfacore.ui.activities.DrawerActivity
 import org.secuso.privacyfriendlyexample.R
 
 /**
@@ -50,14 +49,6 @@ abstract class BaseActivity : DrawerActivity() {
         internal const val MAIN_CONTENT_FADEOUT_DURATION = 150
         internal const val MAIN_CONTENT_FADEIN_DURATION = 250
     }
-
-    // Navigation drawer:
-    private var mNavigationView: NavigationView? = null
-
-    // Helper
-    protected val mSharedPreferences: SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
-
-    protected abstract val navigationDrawerID: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,15 +86,6 @@ abstract class BaseActivity : DrawerActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-
-//
-//        mDrawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-//        val toggle = ActionBarDrawerToggle(
-//                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-//        mDrawerLayout!!.addDrawerListener(toggle)
-//        toggle.syncState()
-//
-//        selectNavigationItem(navigationDrawerID)
 
         val mainContent = findViewById<View>(R.id.main_content)
         if (mainContent != null) {

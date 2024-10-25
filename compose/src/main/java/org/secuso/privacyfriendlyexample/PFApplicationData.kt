@@ -7,11 +7,12 @@ import org.secuso.pfacore.model.Theme
 import org.secuso.pfacore.model.about.About
 import org.secuso.pfacore.model.preferences.Preferable
 import org.secuso.pfacore.model.preferences.settings.ISettingData
-import org.secuso.pfacore.ui.compose.help.Help
-import org.secuso.pfacore.ui.compose.preferences.appPreferences
-import org.secuso.pfacore.ui.compose.preferences.settings.PreferenceFirstTimeLaunch
-import org.secuso.pfacore.ui.compose.preferences.settings.SettingThemeSelector
-import org.secuso.pfacore.ui.compose.tutorial.buildTutorial
+import org.secuso.pfacore.ui.help.Help
+import org.secuso.pfacore.ui.preferences.appPreferences
+import org.secuso.pfacore.ui.preferences.settings.DeviceInformationOnErrorReport
+import org.secuso.pfacore.ui.preferences.settings.PreferenceFirstTimeLaunch
+import org.secuso.pfacore.ui.preferences.settings.SettingThemeSelector
+import org.secuso.pfacore.ui.tutorial.buildTutorial
 
 class PFApplicationData private constructor(context: Context) {
 
@@ -20,6 +21,8 @@ class PFApplicationData private constructor(context: Context) {
     lateinit var exampleSwitch: Preferable<Boolean>
         private set
     lateinit var firstTimeLaunch: Preferable<Boolean>
+        private set
+    lateinit var includeDeviceDataInReport: Preferable<Boolean>
         private set
 
     private val preferences = appPreferences(context) {
@@ -50,6 +53,9 @@ class PFApplicationData private constructor(context: Context) {
 
                     }
                 }
+            }
+            category("Error Report") {
+                includeDeviceDataInReport = DeviceInformationOnErrorReport().build().invoke(this)
             }
         }
     }
@@ -104,7 +110,8 @@ class PFApplicationData private constructor(context: Context) {
         settings = preferences.settings,
         tutorial = tutorial,
         theme = theme.state.map { Theme.valueOf(it) },
-        firstLaunch = firstTimeLaunch
+        firstLaunch = firstTimeLaunch,
+        includeDeviceDataInReport = includeDeviceDataInReport,
     )
 
     companion object {

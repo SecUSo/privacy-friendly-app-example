@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     tools:context="org.secuso.privacyfriendlyexample.ui.MainActivity">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/pfa_toolbar" />
 
     <include layout="@layout/content_main" />
 

@@ -17,12 +17,17 @@
 package org.secuso.privacyfriendlyexample.ui
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.viewinterop.AndroidViewBinding
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import org.secuso.pfacore.application.PFApplication
 import org.secuso.pfacore.model.DrawerElement
+import org.secuso.pfacore.model.permission.PFAPermission
+import org.secuso.pfacore.ui.declareUsage
 import org.secuso.privacyfriendlyexample.R
 import org.secuso.privacyfriendlyexample.databinding.ActivityMainBinding
 import org.secuso.privacyfriendlyexample.ui.viewmodel.MainExampleViewModel
@@ -41,8 +46,28 @@ class MainActivity : BaseActivity() {
 
     @Composable
     override fun Content(application: PFApplication) {
+        val requestPermission = PFAPermission.AccessCoarseLocation.declareUsage(this) {
+            onGranted = {
+                Log.d("TestPermission", "permission should be granted: ${ContextCompat.checkSelfPermission(this@MainActivity, PFAPermission.AccessCoarseLocation.permission)}")
+            }
+            onDenied = {
+                Log.d("TestPermission", "permission should be denied: ${ContextCompat.checkSelfPermission(this@MainActivity, PFAPermission.AccessCoarseLocation.permission)}")
+            }
+            showRationale = {
+                rationaleTitle = "This requires the schedule exact alarm permission"
+                rationaleText = "Definitely needed."
+            }
+        }
         AndroidViewBinding(ActivityMainBinding::inflate) {
             // Access all UI-Elements here
+            fab.setOnClickListener {
+                requestPermission()
+            }
+            findViewById<Button>(R.id.crash_button).setOnClickListener {
+                Thread {
+                    throw IllegalStateException("This application was crashed on purpose!")
+                }.start()
+            }
         }
     }
 

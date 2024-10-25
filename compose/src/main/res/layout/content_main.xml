@@ -110,5 +110,14 @@
         android:id="@+id/main_button_disabled"
         android:onClick="onClick"/>
 
+    <Button
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Crash me"
+        android:background="@drawable/button_fullwidth"
+        android:id="@+id/crash_button" />
+
 
 </LinearLayout>

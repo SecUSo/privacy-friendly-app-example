@@ -16,21 +16,11 @@
  */
 package org.secuso.privacyfriendlyexample.ui
 
-//import org.secuso.pfacore.ui.compose.activities.HelpActivity
-
 import android.content.Intent
-import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.preference.PreferenceManager
 import android.view.View
-import androidx.core.app.TaskStackBuilder
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
 import org.secuso.pfacore.model.DrawerMenu
-import org.secuso.pfacore.ui.compose.activities.DrawerActivity
+import org.secuso.pfacore.ui.activities.DrawerActivity
 import org.secuso.privacyfriendlyexample.R
 
 /**
@@ -57,14 +47,6 @@ abstract class BaseActivity : DrawerActivity() {
         internal const val MAIN_CONTENT_FADEIN_DURATION = 250
     }
 
-    // Navigation drawer:
-    private var mDrawerLayout: DrawerLayout? = null
-    private var mNavigationView: NavigationView? = null
-
-    // Helper
-    private val mHandler: Handler = Handler()
-    protected val mSharedPreferences: SharedPreferences by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
-
     protected abstract val navigationDrawerID: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,31 +72,6 @@ abstract class BaseActivity : DrawerActivity() {
             }
         }
         defaultDrawerSection(this)
-    }
-
-    override fun onBackPressed() {
-        val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    /**
-     * Enables back navigation for activities that are launched from the NavBar. See
-     * `AndroidManifest.xml` to find out the parent activity names for each activity.
-     * @param intent
-     */
-    private fun createBackStack(intent: Intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            val builder = TaskStackBuilder.create(this)
-            builder.addNextIntentWithParentStack(intent)
-            builder.startActivities()
-        } else {
-            startActivity(intent)
-            finish()
-        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
