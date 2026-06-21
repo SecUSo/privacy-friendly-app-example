@@ -1,6 +1,7 @@
 package org.secuso.privacyfriendlyexample
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.map
 import org.secuso.pfacore.application.PFData
 import org.secuso.pfacore.model.Theme
@@ -12,6 +13,9 @@ import org.secuso.pfacore.ui.preferences.appPreferences
 import org.secuso.pfacore.ui.preferences.settings.DeviceInformationOnErrorReport
 import org.secuso.pfacore.ui.preferences.settings.PreferenceFirstTimeLaunch
 import org.secuso.pfacore.ui.preferences.settings.SettingThemeSelector
+import org.secuso.pfacore.ui.preferences.settings.action
+import org.secuso.pfacore.ui.preferences.settings.menu
+import org.secuso.pfacore.ui.preferences.settings.switch
 import org.secuso.pfacore.ui.tutorial.buildTutorial
 
 class PFApplicationData private constructor(context: Context) {
@@ -38,6 +42,12 @@ class PFApplicationData private constructor(context: Context) {
                     default = false
                     backup = true
                 }
+
+                action {
+                    title { resource(R.string.pref_example_action) }
+                    summary { resource(R.string.pref_example_action_summary) }
+                    onClick = { Log.i("Beispielaktion", "geklickt!") }
+                }
             }
             category("Design") {
                 theme = SettingThemeSelector().build().invoke(this)
@@ -50,7 +60,15 @@ class PFApplicationData private constructor(context: Context) {
                         }
                     }
                     content {
-
+                        category("Design") {
+                            exampleSwitch = switch {
+                                key = "pref_example_switch"
+                                title { resource(R.string.pref_example_switch) }
+                                summary { resource(R.string.pref_example_summary) }
+                                default = false
+                                backup = true
+                            }
+                        }
                     }
                 }
             }
@@ -93,17 +111,17 @@ class PFApplicationData private constructor(context: Context) {
     private val tutorial = buildTutorial {
         stage {
             title = context.getString(R.string.slide1_heading)
-            images = listOf(R.mipmap.ic_splash)
+            images = single(R.mipmap.ic_splash)
             description = context.getString(R.string.slide1_text)
         }
         stage {
             title = context.getString(R.string.slide2_heading)
-            images = listOf(R.mipmap.ic_splash)
+            images = single(R.mipmap.ic_splash)
             description = context.getString(R.string.slide2_text)
         }
         stage {
             title = context.getString(R.string.slide3_heading)
-            images = listOf(R.mipmap.ic_splash)
+            images = single(R.mipmap.ic_splash)
             description = context.getString(R.string.slide3_text)
         }
     }
@@ -111,7 +129,7 @@ class PFApplicationData private constructor(context: Context) {
     val data = PFData(
         about = about,
         help = help,
-        settings = preferences.settings,
+        preferences = preferences,
         tutorial = tutorial,
         theme = theme.state.map { Theme.valueOf(it) },
         firstLaunch = firstTimeLaunch,

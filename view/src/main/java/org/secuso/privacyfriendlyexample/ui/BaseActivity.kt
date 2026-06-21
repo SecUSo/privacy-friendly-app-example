@@ -75,15 +75,6 @@ abstract class BaseActivity : DrawerActivity() {
         defaultDrawerSection(this)
     }
 
-    override fun setContentView(layoutResID: Int) {
-        super.setContent(layoutResID)
-    }
-
-    override fun setContentView(view: View) {
-
-        super.setContent(view)
-    }
-
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 

@@ -63,7 +63,8 @@ Ne albucius perfecto adolescens eum, id choro assueverit mea, sed viris constitu
     <string name="pref_example_switch">Example Switch</string>
     <string name="pref_example_switch_summary">Example Switch Summary</string>
     <string name="pref_example_summary">Example Summary</string>
-
+    <string name="pref_example_action">Example Action</string>
+    <string name="pref_example_action_summary">Clicking this may invoke something</string>
     <!-- ### TUTORIAL DIALOG ### -->
     <string name="slide1_heading">Welcome!</string>
     <string name="slide1_text">This App serves as a guideline to see the basic design of Privacy Friendly Apps. Here introduce your app in one or two sentences.</string>

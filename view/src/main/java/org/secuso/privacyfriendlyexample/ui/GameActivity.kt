@@ -17,6 +17,7 @@
 package org.secuso.privacyfriendlyexample.ui
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,10 +37,6 @@ import org.secuso.privacyfriendlyexample.databinding.ActivityGameBinding
  */
 class GameActivity : BaseActivity() {
 
-    /**
-     * ID of the menu item it belongs to
-     */
-    override val navigationDrawerID: Int = R.id.nav_game
     private lateinit var binding: ActivityGameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +48,7 @@ class GameActivity : BaseActivity() {
         // Set up the ViewPager with the sections adapter.
         binding.chooseGameTypeViewPager.adapter = mSectionsPagerAdapter
 
-        val index = mSharedPreferences.getInt("lastChosenPage", 0)
+        val index = PreferenceManager.getDefaultSharedPreferences(this).getInt("lastChosenPage", 0)
 
         binding.chooseGameTypeViewPager.currentItem = index
 
@@ -70,7 +67,7 @@ class GameActivity : BaseActivity() {
                 binding.arrowRight.visibility = if (position == mSectionsPagerAdapter.count - 1) View.INVISIBLE else View.VISIBLE
 
                 //save position in settings
-                val editor = mSharedPreferences.edit()
+                val editor = PreferenceManager.getDefaultSharedPreferences(this@GameActivity).edit()
                 editor.putInt("lastChosenPage", position)
                 editor.apply()
             }

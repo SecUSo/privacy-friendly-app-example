@@ -24,9 +24,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.secuso.pfacore.application.PFApplication
 import org.secuso.pfacore.model.DrawerElement
 import org.secuso.pfacore.model.permission.PFAPermission
+import org.secuso.pfacore.ui.PFApplication
 import org.secuso.pfacore.ui.declareUsage
 
 import org.secuso.privacyfriendlyexample.R
@@ -54,8 +54,8 @@ class MainActivity : BaseActivity() {
                 Log.d("TestPermission", "permission should be denied: ${ContextCompat.checkSelfPermission(activity, PFAPermission.ScheduleExactAlarm.permission)}")
             }
             showRationale = {
-                rationaleTitle = "This requires the schedule exact alarm permission"
-                rationaleText = "Definitely needed."
+                rationaleTitle = { "This requires the schedule exact alarm permission" }
+                rationaleText = {"Definitely needed."}
             }
         }
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { requestPermission() }

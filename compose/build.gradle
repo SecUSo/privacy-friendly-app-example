@@ -1,5 +1,9 @@
 plugins {
-    id "org.jetbrains.kotlin.plugin.serialization" version "$kotlin_version"
+    alias libs.plugins.android.app
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.kotlin.kapt
+    alias libs.plugins.ktx.serialization
+    alias libs.plugins.kotlin.compose
 }
 
 apply plugin: 'com.android.application'

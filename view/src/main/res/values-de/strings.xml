@@ -60,7 +60,8 @@
     <string name="pref_example_switch">Schwebend</string>
     <string name="pref_example_switch_summary">Beispiel Switch Summary</string>
     <string name="pref_example_summary">Beispiel Summary</string>
-
+    <string name="pref_example_action">Beispielaktion</string>
+    <string name="pref_example_action_summary">Hier klicken könnte etwas bewirken!</string>
     <!-- ### WELCOME DIALOG ### -->
     <string name="okay">Okay</string>
     <string name="viewhelp">Hilfe</string>
